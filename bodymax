@@ -43,7 +43,6 @@ label { display:block; margin-bottom:5px; font-size:0.85rem; color:#8b949e; }
 .muscle-group { color:var(--primary); font-weight:bold; }
 
 .toggle-link { color:var(--accent); cursor:pointer; font-size:0.9rem; text-decoration:underline; }
-
 /* Password eye toggle */
 .pw-wrap { position:relative; }
 .pw-wrap input { padding-right:44px; }
