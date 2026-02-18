@@ -1,9 +1,11 @@
 <?php
 /* ============================================
+
    index.php — LIMITLESS Landing + Login Page
    Shows hero section first.
    Login/Register open as modals.
    On success → redirect to app.php
+   
    ============================================ */
 session_start();
 
