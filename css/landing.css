@@ -1,0 +1,248 @@
+/* ============================================
+   css/landing.css
+   All styles for index.php:
+   Navbar, Hero Section, Auth Modals
+   ============================================ */
+
+/* ======== NAVBAR ======== */
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-decoration: none;
+}
+.logo span { color: var(--text); }
+
+.nav-actions { display: flex; gap: 12px; align-items: center; }
+
+
+/* ======== HERO SECTION ======== */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background grid lines */
+.hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(232,255,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,255,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+/* Radial glow on the right */
+.hero-glow {
+    position: absolute;
+    right: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(232,255,0,0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Small label above the title */
+.hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Big display title */
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 13rem);
+    line-height: 0.9;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+}
+.hero-title .accent {
+    color: var(--accent);
+}
+.hero-title .stroke {
+    -webkit-text-stroke: 2px var(--text);
+    color: transparent;
+}
+
+/* Subtitle paragraph */
+.hero-sub {
+    margin-top: 32px;
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+/* CTA buttons row */
+.hero-cta {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Stats row at the bottom of hero */
+.hero-stats {
+    margin-top: 80px;
+    display: flex;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-item .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+}
+.stat-item .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+
+/* ======== AUTH MODALS ======== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    width: 460px;
+    max-width: 95vw;
+    padding: 48px;
+    position: relative;
+    animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92) translateY(20px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* × close button */
+.modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+.modal-close:hover { color: var(--text); }
+
+/* Modal heading */
+.modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+.modal-title span { color: var(--accent); }
+
+.modal-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+}
+
+/* Submit button inside modal */
+.btn-auth {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+.btn-auth:hover {
+    background: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(232,255,0,0.25);
+}
+
+/* "No account? Sign up" link */
+.modal-footer {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+}
+.modal-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+.modal-footer a:hover { text-decoration: underline; }
+
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+    nav           { padding: 16px 20px; }
+    #hero         { padding: 100px 20px 60px; }
+    .hero-title   { font-size: 4rem; }
+    .hero-stats   { gap: 30px; }
+    .hero-cta     { flex-direction: column; }
+    .btn-xl       { text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .modal        { padding: 32px 24px; }
+    .hero-title   { font-size: 3.2rem; }
+}

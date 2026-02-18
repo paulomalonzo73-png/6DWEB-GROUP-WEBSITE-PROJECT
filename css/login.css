@@ -1,0 +1,203 @@
+/* ============================================
+   css/login.css
+   Styles for index.php (login page only)
+   ============================================ */
+
+html, body { height: 100%; }
+
+/* ---- Two-column layout ---- */
+.login-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---- LEFT: branding panel ---- */
+.login-left {
+    flex: 1;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 56px;
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--border);
+}
+
+.login-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(232,255,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,255,0,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+}
+
+.login-glow {
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(232,255,0,0.07) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.login-brand { position: relative; z-index: 1; }
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    line-height: 1;
+}
+.logo span { color: var(--text); }
+
+.brand-tagline {
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* stats row at the bottom of left panel */
+.login-stats {
+    display: flex;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+}
+
+.stat-item .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+}
+.stat-item .label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+/* ---- RIGHT: form panel ---- */
+.login-right {
+    width: 480px;
+    min-width: 480px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 56px;
+}
+
+/* ---- Tab switcher ---- */
+.auth-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+}
+
+.auth-tab {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 24px 12px 0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+    margin-right: 24px;
+}
+
+.auth-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+}
+
+.auth-tab.active        { color: var(--text); }
+.auth-tab.active::after { transform: scaleX(1); }
+.auth-tab:hover         { color: var(--text); }
+
+/* ---- Auth panels (login / register) ---- */
+.auth-panel        { display: none; }
+.auth-panel.active { display: block; }
+
+.auth-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    line-height: 1;
+}
+.auth-title span { color: var(--accent); }
+
+.auth-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+}
+
+/* ---- Submit button ---- */
+.btn-auth {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+.btn-auth:hover {
+    background: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(232,255,0,0.25);
+}
+
+/* ---- Footer link ---- */
+.auth-footer {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+}
+.auth-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+.auth-footer a:hover { text-decoration: underline; }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+    .login-left  { display: none; }
+    .login-right { width: 100%; min-width: unset; padding: 48px 32px; }
+}
+
+@media (max-width: 480px) {
+    .login-right { padding: 32px 20px; }
+}

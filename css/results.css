@@ -1,0 +1,200 @@
+/* ============================================
+   css/results.css
+   Nutrition cards and workout schedule styles
+   ============================================ */
+
+/* ---- Results container ---- */
+#results {
+    display: none;
+    padding: 60px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+#results.active { display: block; }
+
+.results-header  { margin-bottom: 60px; }
+
+.results-title   { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; }
+.results-title span { color: var(--accent); }
+
+.results-tags    { margin: 12px 0 40px; }
+
+/* Tags (goal / exp / type badges) */
+.tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid;
+    margin-right: 8px;
+}
+.tag-goal { border-color: var(--accent);  color: var(--accent); }
+.tag-exp  { border-color: var(--accent2); color: var(--accent2); }
+.tag-type { border-color: #00aaff;        color: #00aaff; }
+
+/* ---- Nutrition cards ---- */
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 60px;
+}
+
+.nutrition-card {
+    background: var(--surface);
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.nutrition-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+}
+.nutrition-card:nth-child(2)::after { background: #ff4d00; }
+.nutrition-card:nth-child(3)::after { background: #00aaff; }
+.nutrition-card:nth-child(4)::after { background: #ff00aa; }
+
+.nut-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--accent);
+}
+.nutrition-card:nth-child(2) .nut-value { color: #ff4d00; }
+.nutrition-card:nth-child(3) .nut-value { color: #00aaff; }
+.nutrition-card:nth-child(4) .nut-value { color: #ff00aa; }
+
+.nut-unit  { font-size: 0.9rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+.nut-label { margin-top: 8px; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+/* ---- Workout schedule ---- */
+.schedule-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; margin-bottom: 24px; }
+.schedule-title span { color: var(--accent); }
+
+.day-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+}
+.day-header:hover { background: var(--surface2); }
+
+.day-left    { display: flex; align-items: center; gap: 16px; }
+.day-name    { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.1em; }
+
+.day-badge {
+    background: rgba(232,255,0,0.12);
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    font-family: 'DM Mono', monospace;
+}
+
+.day-focus   { font-size: 0.8rem; color: var(--muted); }
+
+.day-chevron {
+    color: var(--muted);
+    transition: transform 0.3s;
+    font-size: 1.2rem;
+}
+.day-card.open .day-chevron { transform: rotate(180deg); }
+
+.day-exercises            { display: none; border-top: 1px solid var(--border); }
+.day-card.open .day-exercises { display: block; }
+
+/* ---- Exercise table inside each day ---- */
+.exercise-table            { width: 100%; border-collapse: collapse; }
+
+.exercise-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.exercise-table td {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.exercise-table tr:last-child td { border-bottom: none; }
+.exercise-table tr:hover td      { background: var(--surface2); }
+
+.exercise-name { font-weight: 500; }
+
+.badge-sets {
+    background: rgba(232,255,0,0.1);
+    color: var(--accent);
+    padding: 3px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+}
+
+/* ---- Rebuild plan button ---- */
+.btn-restart {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 12px 28px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 48px;
+    display: inline-block;
+}
+.btn-restart:hover { border-color: var(--accent); color: var(--accent); }
+
+
+/* ============================================
+   css/responsive.css
+   Mobile & tablet breakpoints
+   ============================================ */
+
+@media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+
+    #hero { padding: 100px 20px 60px; }
+    .hero-title { font-size: 4rem; }
+    .hero-stats { gap: 30px; flex-wrap: wrap; }
+
+    .form-section { padding: 40px 20px; }
+
+    .options-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .options-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+
+    .nutrition-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .fields-row     { grid-template-columns: 1fr; }
+
+    #results { padding: 40px 20px; }
+
+    .welcome-bar { padding: 12px 20px; }
+}
+
+@media (max-width: 480px) {
+    .options-grid.cols-2 { grid-template-columns: 1fr; }
+    .nutrition-grid      { grid-template-columns: 1fr 1fr; }
+}
