@@ -25,7 +25,7 @@ http://localhost/limitless/
 ## 📁 File Structure
 
 ```
-limitless-v2/
+limitless/
 │
 ├── index.php                   ← LOGIN PAGE only (first page)
 ├── app.php                     ← MAIN APP (profile form + results, login-protected)
@@ -58,9 +58,9 @@ limitless-v2/
 
 ## 🚀 Setup (XAMPP)
 
-1. Copy `limitless-v2/` to `C:/xampp/htdocs/limitless-v2/`
+1. Copy `limitless/` to `C:/xampp/htdocs/limitless/`
 2. Open phpMyAdmin → Import `database.sql`
-3. Visit `http://localhost/limitless-v2/`
+3. Visit `http://localhost/limitless/`
 
 ### DB Config (`php/config.php`)
 ```php
