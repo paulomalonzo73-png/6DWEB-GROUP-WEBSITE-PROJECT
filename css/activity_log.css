@@ -1,0 +1,167 @@
+/* ============================================
+   css/activity_log.css
+   MEMBER 1 — Audit Trail / Activity Log styles
+   ============================================ */
+
+.log-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+}
+
+/* ---- Header ---- */
+.log-header { margin-bottom: 48px; }
+
+.section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.log-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+.log-title span { color: var(--accent); }
+
+.log-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+.log-sub code {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    background: rgba(232,255,0,0.08);
+    padding: 2px 6px;
+}
+
+.log-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.meta-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+}
+.meta-pill strong { color: var(--text); }
+
+/* ---- Table ---- */
+.log-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+}
+
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.log-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 20px;
+    text-align: left;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.log-table td {
+    padding: 14px 20px;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+}
+
+.log-table tr:last-child td { border-bottom: none; }
+.log-table tr:hover td { background: var(--surface2); }
+
+.row-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.action-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid;
+    white-space: nowrap;
+}
+
+.desc-cell {
+    color: var(--muted);
+    font-size: 0.82rem;
+    max-width: 340px;
+}
+
+.ip-cell {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.ts-cell {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+/* ---- Empty state ---- */
+.empty-state {
+    text-align: center;
+    padding: 80px 40px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+}
+.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+
+/* ---- Pagination ---- */
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.page-btn:hover,
+.page-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .log-page { padding: 90px 20px 60px; }
+    .log-title { font-size: 2.5rem; }
+}
