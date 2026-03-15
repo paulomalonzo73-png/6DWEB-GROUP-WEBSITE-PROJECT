@@ -13,6 +13,5 @@ function getDBConnection() {
     $conn->set_charset('utf8mb4');
     return $conn;
 }
-
-session_start();
+// session_start() removed — each page handles its own session
 ?>
