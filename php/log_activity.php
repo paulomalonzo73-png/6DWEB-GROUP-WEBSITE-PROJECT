@@ -1,33 +1,34 @@
 <?php
 /* ============================================
    php/log_activity.php
-   MEMBER 1 — Audit Trail / Activity Log
-   Reusable function called from auth.php,
-   generate_plan.php, and any other action.
+   UNIQUE BACKEND 2 — Activity Logs
+   Inserts a log entry into activity_logs table.
    ============================================ */
 
-/**
- * Log a user action into activity_logs table.
- *
- * @param mysqli  $conn        Active DB connection
- * @param int     $user_id     ID of the acting user
- * @param string  $action      Short action code (e.g. 'LOGIN', 'PLAN_GENERATED')
- * @param string  $description Optional detail string
- */
-function logActivity($conn, $user_id, $action, $description = '') {
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+require_once __DIR__ . '/config.php';
 
-    // Truncate description to prevent oversized inserts
-    $description = substr($description, 0, 500);
+function logActivity($user_id, $username, $action, $details = '') {
+    $conn = getDBConnection();
 
+    // Auto-create table if missing
+    $conn->query("CREATE TABLE IF NOT EXISTS activity_logs (
+        id         INT AUTO_INCREMENT PRIMARY KEY,
+        user_id    INT          NULL,
+        username   VARCHAR(50)  NOT NULL DEFAULT '',
+        action     VARCHAR(100) NOT NULL,
+        details    TEXT         NULL,
+        ip_address VARCHAR(45)  NOT NULL DEFAULT '',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+    )");
+
+    $ip   = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
     $stmt = $conn->prepare(
-        "INSERT INTO activity_logs (user_id, action, description, ip_address)
-         VALUES (?, ?, ?, ?)"
+        "INSERT INTO activity_logs (user_id, username, action, details, ip_address)
+         VALUES (?, ?, ?, ?, ?)"
     );
-    if ($stmt) {
-        $stmt->bind_param("isss", $user_id, $action, $description, $ip);
-        $stmt->execute();
-        $stmt->close();
-    }
+    $stmt->bind_param("issss", $user_id, $username, $action, $details, $ip);
+    $stmt->execute();
+    $conn->close();
 }
 ?>
